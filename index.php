@@ -20,7 +20,11 @@ function getSiswa($nis, $conn) {
 function catatAbsensi($nis, $conn) {
     $today = date('Y-m-d');
     $now = date('H:i:s');
-    $query = "INSERT INTO absensi (nis, tanggal, waktu) VALUES ('$nis', '$today', '$now')";
+    $ip_address = $_SERVER['REMOTE_ADDR'];
+    $query = "INSERT INTO absensi (nis, tanggal, waktu, ip_address) VALUES (?, NOW(), NOW(), ?)";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "ss", $nis, $ip_address);
+    mysqli_stmt_execute($stmt);
     return mysqli_query($conn, $query);
 }
 
