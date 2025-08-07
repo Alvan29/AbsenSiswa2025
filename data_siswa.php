@@ -46,6 +46,12 @@
         Terapkan Filter
       </button>
     </div>
+    <!-- Tombol Tambah -->
+    <div class="mt-6">
+      <a href="tambah_siswa.php" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-2 rounded-lg text-sm">
+        + Tambah Siswa
+      </a>
+    </div>
   </form>
 </div>
 
@@ -75,7 +81,7 @@
                 echo "<td class='px-6 py-4'>" . $data['kelas'] . "</td>";
                 echo "<td class='border p-2'>";
                   echo "<button class='bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-xs mr-2'>Edit" . "</button>";
-                  echo "<button class='bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-x'>Hapus" . "</button>";
+                  echo "<button onclick=\"showHapusModal('" . $data['id'] . "')\" class='bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-x'>Hapus" . "</button>";
                 echo "</td>";
               echo "</tr>";
             }
@@ -84,13 +90,28 @@
       </table>
     </div>
 
-    <!-- Tombol Tambah -->
-    <div class="mt-6">
-      <a href="tambah_siswa.php" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-2 rounded-lg text-sm">
-        + Tambah Siswa
-      </a>
+    <!-- Hapus Modal -->
+    <div id="hapusModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+      <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+        <h2 class="text-lg font-semibold mb-4 text-gray-800 text-center">Yakin hapus data?</h2>
+        <div class="flex justify-end gap-3">
+          <button onclick="toggleHapusModal()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded">Tidak</button>
+          <a id="confirmDeleteBtn" href="#" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Iya</a>
+        </div>
+      </div>
     </div>
   </main>
 
 </body>
 </html>
+
+<script>
+  function toggleHapusModal() {
+    const modal = document.getElementById("hapusModal");
+    modal.classList.toggle("hidden"); 
+  }
+  function showHapusModal(id) {
+    document.getElementById('confirmDeleteBtn').href = 'hapus_siswa.php?id=' + id;
+    document.getElementById('hapusModal').classList.remove('hidden');
+  }
+</script>
