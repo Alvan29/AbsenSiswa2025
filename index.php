@@ -98,7 +98,7 @@ $riwayat_absen = getRiwayatAbsensi($conn, 10);
 <head>
   <meta charset="UTF-8">
   <title>Absensi Siswa</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="css/style.css" rel="stylesheet">
   <script>
     function updateClock() {
       const now = new Date();

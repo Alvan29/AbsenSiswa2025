@@ -24,7 +24,7 @@
   <meta charset="UTF-8">
   <title>Data Kelas dan Jurusan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="css/style.css" rel="stylesheet">
 </head>
 <body class="flex bg-gray-200">
 
