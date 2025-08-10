@@ -112,6 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           die("Error: " . mysqli_error($conn));
         }else{
           $success = "Berhasil menambahkan siswa";
+          header("location: data_siswa.php");
         }
     }
   }    
