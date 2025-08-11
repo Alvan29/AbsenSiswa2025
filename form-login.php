@@ -1,5 +1,4 @@
 <?php
-// Gunakan session dan koneksi sesuai login.php asli
 session_start();
 include "koneksi.php";
 ?>

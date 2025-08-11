@@ -1,77 +1,78 @@
+<!-- landing.php -->
 <?php
+// Tidak ada backend, ini hanya tampilan (front-end) sesuai permintaan
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
+    <title>Absensi Siswa</title>
+    <link href="css/style.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .hover-dissolve:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transition: background-color 0.3s ease-in-out;
-        }
-    </style>
 </head>
-<body class="h-screen w-screen overflow-hidden relative">
-
-    <!-- Background Video -->
-    <video id="bgVideo"
-           class="absolute inset-0 w-full h-full object-cover"
-           autoplay
-           muted
-           loop
-           playsinline
-           poster="images/poster.jpg">
-    </video>
-    <div class="absolute inset-0"></div>
+<body class="bg-white text-gray-800">
 
     <!-- Navbar -->
-    <div class="absolute top-6 left-1/2 transform -translate-x-1/2
-                bg-white/20 backdrop-blur-md shadow-lg 
-                rounded-[10px] flex space-x-10 px-8 py-3">
-        <button onclick="openModal('form-absen.php')" class="px-4 py-2 rounded-md text-black font-medium hover-dissolve">Absen</button>
-        <button onclick="openModal('form-login.php')" class="px-4 py-2 rounded-md text-black font-medium hover-dissolve">Login</button>
-    </div>
-
-    <!-- Modal -->
-    <div id="modal" class="fixed inset-0 hidden items-center justify-center bg-black/50 z-50">
-        <div class="bg-white rounded-lg shadow-lg max-w-md w-full relative p-6">
-            <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800">&times;</button>
-            <div id="modalContent" class="overflow-auto max-h-[80vh]"></div>
+    <nav class="flex items-center justify-between px-8 py-4">
+        <div class="font-bold text-lg">TKJ SEKOLAHMU</div>
+        <div class="flex items-center gap-6">
+            <a href="#" class="hover:underline">GITHUB</a>
+            <a href="https://www.instagram.com/topman2cianjur/" class="hover:underline">INSTAGRAM</a>
         </div>
+        <a href="login.php" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">LOGIN</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-8 py-10 items-center">
+        
+        <!-- Left Content -->
+        <div>
+            <h1 class="text-4xl font-bold mb-4">SELAMAT DATANG DI<br>ABSENSI SISWA</h1>
+            <p class="text-gray-500 mb-4">
+                Selamat datang di Absensi Sekolahmu, tempat di mana setiap kedatangan adalah awal dari hari yang penuh semangat. Mari kita wujudkan kedisiplinan, kebersamaan, dan prestasi bersama, dimulai dari langkah sederhana: hadir tepat waktu.
+            </p>
+            <p class="font-semibold mb-2">silahkan Absen</p>
+
+            <!-- Form Absen -->
+            <form action="index.php" method="POST" class="flex items-center gap-2 mb-6">
+                <input type="text" name="nis" placeholder="masukan NIS MU" 
+                    class="border border-gray-300 rounded-full px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-black">
+                <button type="submit" class="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800">ABSEN</button>
+            </form>
+
+            <!-- Tabel Data -->
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200 rounded-lg overflow-hidden">
+                    <thead class="bg-gray-100 border-b border-gray-200">
+                        <tr>
+                            <th class="px-4 py-2 text-left font-semibold">nama</th>
+                            <th class="px-4 py-2 text-left font-semibold">jam absen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b">
+                            <td class="px-4 py-2">salsa</td>
+                            <td class="px-4 py-2">12.00</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2"></td>
+                            <td class="px-4 py-2"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Right Content -->
+        <div class="flex justify-center ml-6">
+            <img src="./images/outer-bailey.jpg" 
+                 alt="Gambar" 
+                 class="rounded-2xl object-cover" 
+                 style="width: 630px; height: 800px;">
+        </div>
+
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const video = document.getElementById("bgVideo");
-            setTimeout(() => {
-                const source = document.createElement("source");
-                // source.src = "images/video.mp4";
-                source.type = "video/mp4";
-                video.appendChild(source);
-                video.load();
-                video.play().catch(err => console.log("Autoplay blocked:", err));
-            }, 500);
-        });
-
-        function openModal(url) {
-            fetch(url)
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById("modalContent").innerHTML = data;
-                    document.getElementById("modal").classList.remove("hidden");
-                    document.getElementById("modal").classList.add("flex");
-                });
-        }
-
-        function closeModal() {
-            document.getElementById("modal").classList.add("hidden");
-            document.getElementById("modal").classList.remove("flex");
-            document.getElementById("modalContent").innerHTML = "";
-        }
-    </script>
 
 </body>
 </html>
