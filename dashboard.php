@@ -28,7 +28,7 @@
     <!-- Judul & Tombol Absen -->
     <div class="flex justify-between items-center mb-6">
       <h1 class="text-2xl font-bold text-gray-800">Dashboard</h1>
-      <a href="index.php" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium shadow">
+      <a href="landing.php" class="bg-black hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium shadow">
         + Absen Siswa
       </a>
     </div>

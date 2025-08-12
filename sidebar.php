@@ -21,7 +21,7 @@
   <!-- Logout -->
 
   <div class="px-4">
-    <button onclick="toggleLogoutModal()" class="block px-4 py-2 text-sm font-bold uppercase tracking-wider hover:bg-blue-600 rounded text-left w-full">
+    <button onclick="toggleLogoutModal()" class="block px-4 py-2 text-sm font-bold uppercase tracking-wider hover:bg-red-600 rounded text-left w-full">
       Logout
     </button>
   </div>

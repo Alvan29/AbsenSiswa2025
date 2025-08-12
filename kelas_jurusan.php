@@ -17,6 +17,8 @@
         $error = "Gagal menambahkan kelas: " . mysqli_error($conn);
     }
   }
+
+  
 ?>
 <!DOCTYPE html>
 <html lang="id">
