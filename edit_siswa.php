@@ -3,7 +3,6 @@ include "koneksi.php";
 
 $id = $_GET['id'] ?? 0;
 
-// Ambil data siswa berdasarkan ID
 $result = mysqli_query($conn, "SELECT * FROM data_siswa WHERE id='$id'");
 $siswa = mysqli_fetch_assoc($result);
 
@@ -11,7 +10,6 @@ if (!$siswa) {
     die("Data siswa tidak ditemukan.");
 }
 
-// Proses update
 if (isset($_POST['update'])) {
     $nis   = $_POST['nis'];
     $nama  = $_POST['nama'];

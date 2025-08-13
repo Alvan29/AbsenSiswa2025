@@ -7,20 +7,17 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-// Ambil daftar kelas
 $resultKelas = mysqli_query($conn, "SELECT Id, nama_kelas FROM kelas ORDER BY nama_kelas ASC");
 if (!$resultKelas) {
     die("Query error: " . mysqli_error($conn));
 }
 
-// Filter kelas
 $where = "";
 if (!empty($_GET['kelas'])) {
     $id_kelas = mysqli_real_escape_string($conn, $_GET['kelas']);
     $where = "WHERE s.id_kelas = '$id_kelas'";
 }
 
-// Query siswa + join ke kelas
 $query = mysqli_query($conn, "
     SELECT s.id, s.nis, s.nama, k.nama_kelas, s.foto
     FROM data_siswa s
@@ -48,7 +45,6 @@ if (!$query) {
 <main class="flex-1 p-8 bg-gray-100 min-h-screen">
   <h1 class="text-2xl font-bold text-gray-800 mb-6">Data Siswa</h1>
 
-  <!-- Filter -->
   <div class="bg-white p-6 rounded-lg shadow mb-6">
     <form action="data_siswa.php" method="GET" class="grid grid-cols-1 md:grid-cols-4 gap-4">
       <div>

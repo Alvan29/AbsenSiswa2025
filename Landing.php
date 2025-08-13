@@ -1,6 +1,15 @@
-<!-- landing.php -->
 <?php
-// Tidak ada backend, ini hanya tampilan (front-end) sesuai permintaan
+  include 'koneksi.php';
+
+// <!-- jikalaau ingin di tambahkan query pembatas untuk tabel absen terakhir ada di sini silahkan di matikan comand nya  -->
+// Ambil data 10 absen terakhir untuk bisa di display
+// $query = "
+//     SELECT s.nama, a.jam_absen 
+//     FROM absensi a
+//     JOIN siswa s ON a.nis = s.nis
+//     ORDER BY a.tanggal DESC, a.jam_absen DESC
+//     LIMIT 10
+// ";
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -20,7 +29,11 @@
             <a href="#" class="hover:underline">GITHUB</a>
             <a href="https://www.instagram.com/topman2cianjur/" class="hover:underline">INSTAGRAM</a>
         </div>
-        <a href="login.php" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">LOGIN</a>
+        <!-- Tombol Login memanggil modal -->
+        <button onclick="openModal()" 
+            class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">
+            LOGIN
+        </button>
     </nav>
 
     <!-- Main Content -->
@@ -40,6 +53,28 @@
                     class="border border-gray-300 rounded-full px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-black">
                 <button type="submit" class="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800">ABSEN</button>
             </form>
+
+                <!-- jikalaau ingin di tambahkan query pembatas untuk tabel absen terakhir ada di sini silahkan di matikan comand nya  -->
+            <!-- Tabel Data -->
+            <!-- <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200 rounded-lg overflow-hidden">
+                    <thead class="bg-gray-100 border-b border-gray-200">
+                        <tr>
+                            <th class="px-4 py-2 text-left font-semibold">nama</th>
+                            <th class="px-4 py-2 text-left font-semibold">jam absen</th>
+                        </tr>
+                    </thead>
+                    <tbody> -->
+                        </?//php while($row = mysqli_fetch_assoc($result)): ?>
+                        <!-- <tr class="border-b">
+                            <td class="px-4 py-2"></?= htmlspecialchars($row['nama']); ?></td>
+                            <td class="px-4 py-2"></?= htmlspecialchars($row['jam_absen']); ?></td>
+                        </tr> -->
+                        </?php endwhile; ?>
+                    <!-- </tbody>
+                </table>
+            </div> -->
+            
 
             <!-- Tabel Data -->
             <div class="overflow-x-auto">
@@ -74,5 +109,18 @@
 
     </div>
 
+    <!-- Login Modal -->
+    <?php include 'login-popup.php'; ?>
+
+    <script>
+        function openModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+        }
+        function closeModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+        }
+    </script>
+
 </body>
 </html>
+
