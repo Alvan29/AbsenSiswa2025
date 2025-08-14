@@ -18,7 +18,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Absensi Siswa</title>
     <link href="css/style.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-white text-gray-800">
 

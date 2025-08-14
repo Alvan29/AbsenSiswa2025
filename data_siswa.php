@@ -97,8 +97,8 @@ if (!$query) {
           echo "<td class='px-6 py-4'>" . htmlspecialchars($data['nama']) . "</td>";
           echo "<td class='px-6 py-4'>" . htmlspecialchars($data['nama_kelas']) . "</td>";
           echo "<td class='px-6 py-4'>";
-            if (!empty($data['images/*'])) {
-              echo "<img src='images/*" . htmlspecialchars($data['images/*']) . "' alt='foto' class='w-12 h-12 object-cover rounded-full'>";
+            if (!empty($data['foto'])) {
+              echo "<img src='images/" . htmlspecialchars($data['foto']) . "' alt='foto' class='w-12 h-16 object-cover rounded'>";
             } else {
               echo "-";
             }

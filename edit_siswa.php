@@ -18,9 +18,11 @@ if (isset($_POST['update'])) {
     // Foto baru (opsional)
     $fotoBaru = $siswa['foto'];
     if (!empty($_FILES['foto']['name'])) {
-        $targetDir = "uploads/";
+        $targetDir = "images/";
         $fotoBaru = basename($_FILES["foto"]["name"]);
         move_uploaded_file($_FILES["foto"]["tmp_name"], $targetDir . $fotoBaru);
+    }else{
+        'Gagal';
     }
 
     $update = mysqli_query($conn, "UPDATE data_siswa SET 
