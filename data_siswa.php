@@ -18,12 +18,33 @@ if (!empty($_GET['kelas'])) {
     $where = "WHERE s.id_kelas = '$id_kelas'";
 }
 
+// --- Pagination ---
+$limit = 10;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($page < 1) $page = 1;
+$offset = ($page - 1) * $limit;
+
+// Hitung total data
+$countResult = mysqli_query($conn, "
+    SELECT COUNT(*) as total 
+    FROM data_siswa s 
+    LEFT JOIN kelas k ON s.id_kelas = k.Id 
+    $where
+");
+if (!$countResult) {
+    die("Query error: " . mysqli_error($conn));
+}
+$totalData = mysqli_fetch_assoc($countResult)['total'];
+$totalPages = ceil($totalData / $limit);
+
+// Ambil data sesuai halaman
 $query = mysqli_query($conn, "
     SELECT s.id, s.nis, s.nama, k.nama_kelas, s.foto
     FROM data_siswa s
     LEFT JOIN kelas k ON s.id_kelas = k.Id
     $where
     ORDER BY s.nama ASC
+    LIMIT $limit OFFSET $offset
 ");
 if (!$query) {
     die("Query error: " . mysqli_error($conn));
@@ -35,7 +56,7 @@ if (!$query) {
   <meta charset="UTF-8">
   <title>Data Siswa - Absensi Sekolah</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="css/style.css" rel="stylesheet">
+  <link href="css/output.css" rel="stylesheet">
 </head>
 <body class="flex">
 
@@ -89,7 +110,7 @@ if (!$query) {
       </thead>
       <tbody class="text-gray-700 text-sm divide-y divide-gray-200">
         <?php 
-        $no = 1;
+        $no = $offset + 1;
         while ($data = mysqli_fetch_assoc($query)) {
           echo "<tr>";
           echo "<td class='px-6 py-4'>" . $no++ . "</td>";
@@ -113,6 +134,18 @@ if (!$query) {
       </tbody>
     </table>
   </div>
+
+  <!-- Navigasi Halaman -->
+  <?php if ($totalPages > 1): ?>
+  <div class="mt-6 flex gap-2">
+    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+      <a href="data_siswa.php?page=<?= $i; ?><?= !empty($_GET['kelas']) ? '&kelas=' . $_GET['kelas'] : ''; ?>"
+         class="px-3 py-1 rounded <?= $i == $page ? 'bg-blue-500 text-white' : 'bg-gray-300'; ?>">
+         <?= $i; ?>
+      </a>
+    <?php endfor; ?>
+  </div>
+  <?php endif; ?>
 
   <!-- Hapus Modal -->
   <div id="hapusModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
