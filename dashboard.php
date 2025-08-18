@@ -6,6 +6,14 @@
     header("location: index.php");
     exit();
   }
+
+  $quey_kelas = "SELECT COUNT(*) FROM kelas";  
+  $result_kelas = mysqli_query($conn, $quey_kelas);
+  $count_kelas = mysqli_fetch_assoc($result_kelas)['COUNT(*)'];
+
+  $quey_siswa = "SELECT COUNT(*) FROM data_siswa";  
+  $result_siswa = mysqli_query($conn, $quey_siswa);
+  $count_siswa= mysqli_fetch_assoc($result_siswa)['COUNT(*)'];
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -43,7 +51,7 @@
           </svg>
         </div>
         <h2 class="text-center font-medium text-gray-700">Jumlah Siswa</h2>
-        <p class="text-center text-2xl font-bold mt-2 text-blue-600">300</p>
+        <p class="text-center text-2xl font-bold mt-2 text-blue-600"><?php echo $count_siswa; ?></p>
       </div>
 
       <div class="bg-white rounded-lg shadow p-4 relative">
@@ -53,7 +61,7 @@
           </svg>
         </div>
         <h2 class="text-center font-medium text-gray-700">Jumlah Kelas</h2>
-        <p class="text-center text-2xl font-bold mt-2 text-green-600">30</p>
+        <p class="text-center text-2xl font-bold mt-2 text-green-600"><?php echo $count_kelas; ?></p>
       </div>
     </div>
 
