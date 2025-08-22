@@ -14,13 +14,14 @@
       <a href="data_siswa.php" class="block px-4 py-2 rounded <?= $current == 'data_siswa.php' ? 'bg-blue-700' : 'hover:bg-blue-600' ?>">Data Siswa</a>
       <a href="kelas_jurusan.php" class="block px-4 py-2 rounded <?= $current == 'kelas_jurusan.php' ? 'bg-blue-700' : 'hover:bg-blue-600' ?>">Kelas & Jurusan</a>
       <a href="laporan.php" class="block px-4 py-2 rounded <?= $current == 'laporan.php' ? 'bg-blue-700' : 'hover:bg-blue-600' ?>">Laporan</a>
+      <a href="import_siswa.php" class="block px-4 py-2 rounded <?= $current == 'import_siswa.php' ? 'bg-blue-700' : 'hover:bg-blue-600' ?>">Import Data</a>
     </nav>
   </div>
 
   <!-- Logout -->
 
   <div class="px-4">
-    <button onclick="toggleLogoutModal()" class="block px-4 py-2 text-sm font-bold uppercase tracking-wider hover:bg-blue-600 rounded text-left w-full">
+    <button onclick="toggleLogoutModal()" class="block px-4 py-2 text-sm font-bold uppercase tracking-wider hover:bg-red-600 rounded text-left w-full">
       Logout
     </button>
   </div>

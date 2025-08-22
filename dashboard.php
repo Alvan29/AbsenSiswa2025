@@ -6,6 +6,14 @@
     header("location: index.php");
     exit();
   }
+
+  $quey_kelas = "SELECT COUNT(*) FROM kelas";  
+  $result_kelas = mysqli_query($conn, $quey_kelas);
+  $count_kelas = mysqli_fetch_assoc($result_kelas)['COUNT(*)'];
+
+  $quey_siswa = "SELECT COUNT(*) FROM data_siswa";  
+  $result_siswa = mysqli_query($conn, $quey_siswa);
+  $count_siswa= mysqli_fetch_assoc($result_siswa)['COUNT(*)'];
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -13,7 +21,7 @@
   <meta charset="UTF-8">
   <title>Dashboard - Absensi Sekolah</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="css/output.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="flex bg-gray-200 min-h-screen">
@@ -28,7 +36,7 @@
     <!-- Judul & Tombol Absen -->
     <div class="flex justify-between items-center mb-6">
       <h1 class="text-2xl font-bold text-gray-800">Dashboard</h1>
-      <a href="index.php" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium shadow">
+      <a href="index.php" class="bg-black hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium shadow">
         + Absen Siswa
       </a>
     </div>
@@ -43,7 +51,7 @@
           </svg>
         </div>
         <h2 class="text-center font-medium text-gray-700">Jumlah Siswa</h2>
-        <p class="text-center text-2xl font-bold mt-2 text-blue-600">300</p>
+        <p class="text-center text-2xl font-bold mt-2 text-blue-600"><?php echo $count_siswa; ?></p>
       </div>
 
       <div class="bg-white rounded-lg shadow p-4 relative">
@@ -53,7 +61,7 @@
           </svg>
         </div>
         <h2 class="text-center font-medium text-gray-700">Jumlah Kelas</h2>
-        <p class="text-center text-2xl font-bold mt-2 text-green-600">30</p>
+        <p class="text-center text-2xl font-bold mt-2 text-green-600"><?php echo $count_kelas; ?></p>
       </div>
     </div>
 
